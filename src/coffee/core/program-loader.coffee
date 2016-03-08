@@ -409,6 +409,8 @@ class ProgramLoader
                 // draw lines like this:
 		audioRaw = (readMic 0)
 		//console.log 'a'+audioRaw[10]
+		setSmoothingTimeConstant 0.8
+		setNumVars 19  
 		move -1, 0, 0
 		for i in [0...audioRaw.length] 
 			//console.log 'h'+i
