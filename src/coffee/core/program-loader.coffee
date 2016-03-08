@@ -406,16 +406,17 @@ class ProgramLoader
       submenu: "Sound"
       title: "microphone Demo"
       code: """
-            // draw lines like this:
-	audioRaw = (readMic 0)
-	//console.log 'a'+audioRaw[10]
-	move -1, 0, 0
-	for i in audioRaw
-		//console.log 'h'+i
-		move 0.003, 0, 0 
-		//rotate audioRaw[i]
-		//console.log audioRaw[i]
-		box 0.002, 1.0 +  audioRaw[i] * 2.0, 0.2
+                // draw lines like this:
+		audioRaw = (readMic 0)
+		//console.log 'a'+audioRaw[10]
+		move -1, 0, 0
+		for i in [0...audioRaw.length] 
+			//console.log 'h'+i
+			move 0.3, 0, 0 
+			//rotate audioRaw[i]
+			//console.log audioRaw 
+			box 0.2, .1  + audioRaw[i] * 0.02 , 0.2
+	
             """
             
     @programs.demos.overScratch =
