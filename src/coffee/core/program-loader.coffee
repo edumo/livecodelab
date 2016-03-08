@@ -400,8 +400,24 @@ class ProgramLoader
             play 'beepB',      'x--x ---- -x-- -x--'
             play 'voltage',    'x-x- -x-- x-xx x-xx'
             play 'tranceKick', '-x-x ---x x--- --xx'
+    
             """
-
+    @programs.tutorials.micDemo =
+      submenu: "Sound"
+      title: "microphone Demo"
+      code: """
+            // draw lines like this:
+	audioRaw = (readMic 0)
+	//console.log 'a'+audioRaw[10]
+	move -1, 0, 0
+	for i in audioRaw
+		//console.log 'h'+i
+		move 0.003, 0, 0 
+		//rotate audioRaw[i]
+		//console.log audioRaw[i]
+		box 0.002, 1.0 +  audioRaw[i] * 2.0, 0.2
+            """
+            
     @programs.demos.overScratch =
       submenu: "Sound"
       title: "Sound: Over-scratch"
@@ -888,6 +904,9 @@ class ProgramLoader
 
             // next-tutorial:ball
             """
+   
+            
+
 
     @programs.tutorials.ballTutorial =
       submenu: "Graphics"
