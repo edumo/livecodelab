@@ -402,22 +402,46 @@ class ProgramLoader
             play 'tranceKick', '-x-x ---x x--- --xx'
     
             """
-    @programs.tutorials.micDemo =
+    @programs.tutorials.micDemoFFT =
       submenu: "Sound"
-      title: "microphone Demo"
+      title: "microphone Demo fft"
       code: """
                 // draw lines like this:
-		audioRaw = (readMic 0)
+	audioRaw = (getFFT 0)
+	//console.log 'a'+audioRaw[10]
+	setSmoothingTimeConstant 0.8
+	setNumVars 19  
+	move 0, 0, 0
+	for i in [0...audioRaw.length] 
+		//console.log 'h'+i
+		move 0.1, 0, 0 
+		//rotate audioRaw[i]
+		//console.log audioRaw 
+		box 0.05, .1  + audioRaw[i] * 0.02 , 0.2
+	
+	
+            """
+            
+    @programs.tutorials.micDemoWaveForm =
+      submenu: "Sound"
+      title: "microphone Demo waveform"
+      code: """
+                // draw lines like this:
+		audioRaw = (getWaveForm 0)
 		//console.log 'a'+audioRaw[10]
 		setSmoothingTimeConstant 0.8
 		setNumVars 19  
-		move -1, 0, 0
+		move -0.5, -2, 0
 		for i in [0...audioRaw.length] 
 			//console.log 'h'+i
-			move 0.3, 0, 0 
+			pushMatrix
+			move 0.005*i,  audioRaw[i] * 0.02, 0 
 			//rotate audioRaw[i]
 			//console.log audioRaw 
-			box 0.2, .1  + audioRaw[i] * 0.02 , 0.2
+			box 0.0005, .05   , 0.2
+			popMatrix
+
+
 	
             """
             
